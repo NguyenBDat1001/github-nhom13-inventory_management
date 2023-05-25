@@ -13,21 +13,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final themeState = Provider.of<DarkThemeProvider>(context);
+    
     return Scaffold(
-      body: Center(
-        child: SwitchListTile(
-          title: Text("Nền tối"),
-          secondary: Icon(themeState.getDarkTheme ? Icons.dark_mode_outlined : Icons.light_mode_outlined),
-          value: themeState.getDarkTheme,
-          onChanged: (bool value) {
-            setState(() {
-                     themeState.setDarkTheme = value;
-            });
-     
-          },
-        ),
-      ),
+      
           );
   }
 }

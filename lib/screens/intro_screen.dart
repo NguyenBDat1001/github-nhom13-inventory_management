@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management/screens/home_screen.dart';
+
 import 'package:inventory_management/ui/bottom_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

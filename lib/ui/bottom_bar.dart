@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:inventory_management/provider/dark_theme_provider.dart';
-import 'package:inventory_management/screens/export_screen.dart';
-import 'package:inventory_management/screens/history_screen.dart';
-import 'package:inventory_management/screens/home_screen.dart';
-import 'package:inventory_management/screens/import_screen.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:inventory_management/screens/bottombar_screens/export_screen.dart';
+import 'package:inventory_management/screens/bottombar_screens/history_screen.dart';
+import 'package:inventory_management/screens/bottombar_screens/home_screen.dart';
+import 'package:inventory_management/screens/bottombar_screens/import_screen.dart';
 import 'package:provider/provider.dart';
 
 class BottomBar extends StatefulWidget {

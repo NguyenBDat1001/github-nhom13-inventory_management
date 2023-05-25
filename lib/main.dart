@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_management/consts/theme_data.dart';
 import 'package:inventory_management/provider/dark_theme_provider.dart';
-import 'package:inventory_management/screens/home_screen.dart';
 import 'package:inventory_management/screens/intro_screen.dart';
+import 'package:inventory_management/screens/sidebar_screens/setting_screen.dart';
 import 'package:inventory_management/ui/bottom_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
               title: 'Flutter Demo',
               
               theme: Styles.themeData(themeProvider.getDarkTheme, context),
-              home: const IntroPage());
+              home: const SettingScreen());
         }));
   }
 }
