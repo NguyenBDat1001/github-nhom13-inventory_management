@@ -13,19 +13,19 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
+    bool _isDark = themeState.getDarkTheme;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Settings',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 255, 255, 255)),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(42.0),
+          child: AppBar(
+            title: Text(
+              'Cài đặt',
+              style: TextStyle(color: _isDark ? Colors.white : Colors.black),
+            ),
+            backgroundColor: Colors.amber.shade700,
+            centerTitle: true,
           ),
-          backgroundColor: Colors.amber.shade700,
-          elevation: 5,
-          centerTitle: true,
         ),
-        drawer: Drawer(),
         body: Container(
             padding: const EdgeInsets.only(top: 10),
             child: Column(

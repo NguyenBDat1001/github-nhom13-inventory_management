@@ -26,7 +26,8 @@ class _BottomBarState extends State<BottomBar> {
   void _selectedPage(int index) {
     setState(() {
       _selectedIndex = index;
-      PageTransition(child: _page[_selectedIndex],type: PageTransitionType.fade);
+      PageTransition(
+          child: _page[_selectedIndex], type: PageTransitionType.fade);
     });
   }
 
@@ -34,7 +35,40 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
     bool _isDark = themeState.getDarkTheme;
+    Color _changeCol = _isDark ? Colors.white : Colors.amber.shade700;
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(42.0),
+        child: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(width: 40),
+              Image.asset(
+                'assets/images/IP(97).png',
+                width: 65,
+                height: 63,
+              ),
+              Text('InventorPlus',
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.amber.shade700,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic)),
+            ],
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  IconlyBroken.arrowDownCircle,
+                  color: _changeCol,size: 28,
+                ))
+          ],
+          backgroundColor: const Color.fromARGB(0, 255, 162, 0),
+          elevation: 0,
+        ),
+      ),
       body: _page[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: _isDark ? Theme.of(context).cardColor : Colors.white,
@@ -42,8 +76,8 @@ class _BottomBarState extends State<BottomBar> {
           showUnselectedLabels: false,
           onTap: _selectedPage,
           currentIndex: _selectedIndex,
-          unselectedItemColor: _isDark ? Colors.white : Colors.amber.shade700,
-          selectedItemColor: _isDark ? Colors.white : Colors.amber.shade700,
+          unselectedItemColor: _changeCol,
+          selectedItemColor: _changeCol,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(
@@ -61,8 +95,9 @@ class _BottomBarState extends State<BottomBar> {
                     : IconlyLight.arrowUpSquare),
                 label: "Xuất kho"),
             BottomNavigationBarItem(
-                icon: Icon(
-                    _selectedIndex == 3 ? IconlyBold.profile : IconlyLight.profile),
+                icon: Icon(_selectedIndex == 3
+                    ? IconlyBold.profile
+                    : IconlyLight.profile),
                 label: "Tài khoản")
           ]),
     );
