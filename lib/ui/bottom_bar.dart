@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:inventory_management/provider/dark_theme_provider.dart';
 import 'package:inventory_management/screens/bottombar_screens/export_screen.dart';
-import 'package:inventory_management/screens/bottombar_screens/history_screen.dart';
 import 'package:inventory_management/screens/bottombar_screens/home_screen.dart';
 import 'package:inventory_management/screens/bottombar_screens/import_screen.dart';
+import 'package:inventory_management/screens/bottombar_screens/user_screen.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class BottomBar extends StatefulWidget {
@@ -20,11 +21,12 @@ class _BottomBarState extends State<BottomBar> {
     const HomeScreen(),
     const ImportScreen(),
     const ExportScreen(),
-    const HistoryScreen()
+    const UserScreen()
   ];
   void _selectedPage(int index) {
     setState(() {
       _selectedIndex = index;
+      PageTransition(child: _page[_selectedIndex],type: PageTransitionType.fade);
     });
   }
 
@@ -59,10 +61,9 @@ class _BottomBarState extends State<BottomBar> {
                     : IconlyLight.arrowUpSquare),
                 label: "Xuất kho"),
             BottomNavigationBarItem(
-                icon: Icon(_selectedIndex == 3
-                    ? IconlyBold.timeCircle
-                    : IconlyLight.timeCircle),
-                label: "Lịch sử")
+                icon: Icon(
+                    _selectedIndex == 3 ? IconlyBold.profile : IconlyLight.profile),
+                label: "Tài khoản")
           ]),
     );
   }

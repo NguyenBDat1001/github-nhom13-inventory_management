@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management/screens/sidebar_screens/setting_screen.dart';
-import 'package:inventory_management/screens/sidebar_screens/user_screen.dart';
+import 'package:inventory_management/screens/appbar/setting_screen.dart';
+import 'package:inventory_management/screens/bottombar_screens/user_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
 class SidebarDrawer extends StatefulWidget {
