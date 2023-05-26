@@ -14,29 +14,29 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     final themeState = Provider.of<DarkThemeProvider>(context);
     bool _isDark = themeState.getDarkTheme;
 
-    return PreferredSize(
-      preferredSize: const Size.fromHeight(42.0),
-      child: AppBar(
-        title: Text(title,
-            style: TextStyle(
-              color: _isDark ? Colors.white :Colors.amber.shade700,
-              fontSize: 22,
-            )),
-        backgroundColor:const Color.fromARGB(0, 255, 162, 0),
-        elevation: 0,
-        centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              IconlyBroken.arrowLeft2,
-              color: _isDark ? Colors.white : Colors.black,
-            )),
-      ),
+    return AppBar(
+      title: Text(title,
+          style: TextStyle(
+            color: _isDark ? Colors.white : Colors.amber.shade700,
+            fontSize: 24
+          )),
+      backgroundColor: const Color.fromARGB(0, 255, 162, 0),
+      elevation: 0,
+      centerTitle: true,
+      bottom: const PreferredSize(
+          child: Divider(color: Colors.grey, height: 1,),
+          preferredSize: Size.fromHeight(1)),
+      leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            IconlyBroken.arrowLeft2,
+            color: _isDark ? Colors.white : Colors.black,
+          )),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(42);
+  Size get preferredSize => const Size.fromHeight(46);
 }

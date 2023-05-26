@@ -38,12 +38,12 @@ class _BottomBarState extends State<BottomBar> {
     Color _changeCol = _isDark ? Colors.white : Colors.amber.shade700;
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(43.0),
+        preferredSize: Size.fromHeight(48.0),
         child: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(width: 40),
+              const SizedBox(width: 42),
               Image.asset(
                 'assets/images/IP(97).png',
                 width: 72,
@@ -51,7 +51,7 @@ class _BottomBarState extends State<BottomBar> {
               ),
               Text('InventorPlus',
                   style: TextStyle(
-                      fontSize: 21,
+                      fontSize: 22,
                       color: Colors.amber.shade700,
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic)),
@@ -61,12 +61,16 @@ class _BottomBarState extends State<BottomBar> {
             IconButton(
                 onPressed: () {},
                 icon: Icon(
-                  IconlyBroken.arrowDownCircle,
-                  color: _changeCol,size: 25,
+                  IconlyBroken.timeCircle,
+                  color: _changeCol,
+                  size: 26,
                 ))
           ],
           backgroundColor: const Color.fromARGB(0, 255, 162, 0),
           elevation: 0,
+          bottom: const PreferredSize(
+              child: Divider(color: Colors.grey, height: 1),
+              preferredSize: Size.fromHeight(1)),
         ),
       ),
       body: _page[_selectedIndex],

@@ -36,7 +36,7 @@ class _SettingScreenState extends State<SettingScreen> {
               children: [
                 Center(
                   child: SwitchListTile(
-                    title: const Text("Nền tối"),
+                    title: _isDark ? const Text("Nền tối") : const Text("Nền sáng"),
                     secondary: Icon(themeState.getDarkTheme
                         ? Icons.dark_mode_outlined
                         : Icons.light_mode_outlined),
