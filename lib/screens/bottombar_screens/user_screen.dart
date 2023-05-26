@@ -9,10 +9,15 @@ class UserScreen extends StatefulWidget {
   @override
   State<UserScreen> createState() => _UserScreenState();
 }
+
 class _UserScreenState extends State<UserScreen> {
-  void _showScreen(BuildContext context, var screen){
-Navigator.pushReplacement(context, PageTransition(child: screen, type: PageTransitionType.leftToRightWithFade));
-}
+  void _showScreen(BuildContext context, var screen) {
+    Navigator.push(
+        context,
+        PageTransition(
+            child: screen, type: PageTransitionType.leftToRightWithFade));
+  }
+
   Widget _listTiles(
       {required String title,
       String? subtitle,
@@ -47,7 +52,9 @@ Navigator.pushReplacement(context, PageTransition(child: screen, type: PageTrans
                 icon: IconlyBroken.editSquare,
                 onPressed: () {}),
             _listTiles(
-                title: "Cài đặt", icon: IconlyBroken.setting, onPressed: () => _showScreen(context, const SettingScreen())),
+                title: "Cài đặt",
+                icon: IconlyBroken.setting,
+                onPressed: () => _showScreen(context, const SettingScreen())),
             _listTiles(
                 title: "Góp ý, Khiếu nại",
                 icon: IconlyBroken.danger,
