@@ -43,7 +43,7 @@ class _BottomBarState extends State<BottomBar> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(width: 42),
+              const SizedBox(width: 40),
               Image.asset(
                 'assets/images/IP(97).png',
                 width: 72,

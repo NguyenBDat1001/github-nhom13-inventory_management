@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "68928939911",
+    "project_id": "inventorplus---flutter",
+    "storage_bucket": "inventorplus---flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68928939911:android:ad0c6a096712b985089522",
+        "android_client_info": {
+          "package_name": "com.example.inventory_management"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAND9aIyMY3SEQpZR8mBf1IhH0VtwhtTZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
