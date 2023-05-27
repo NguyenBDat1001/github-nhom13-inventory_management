@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:inventory_management/provider/dark_theme_provider.dart';
+import 'package:inventory_management/ui/widgets/text_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -15,16 +16,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     bool _isDark = themeState.getDarkTheme;
 
     return AppBar(
-      title: Text(title,
-          style: TextStyle(
-            color: _isDark ? Colors.white : Colors.amber.shade700,
-            fontSize: 24
-          )),
+      title: TextWidget(
+          text: title,
+          textSize: 24,
+          color: _isDark ? Colors.white : Colors.amber.shade700),
       backgroundColor: const Color.fromARGB(0, 255, 162, 0),
       elevation: 0,
       centerTitle: true,
       bottom: const PreferredSize(
-          child: Divider(color: Colors.grey, height: 1,),
+          child: Divider(
+            color: Colors.grey,
+            height: 1,
+          ),
           preferredSize: Size.fromHeight(1)),
       leading: IconButton(
           onPressed: () {

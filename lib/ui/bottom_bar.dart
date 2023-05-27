@@ -38,7 +38,7 @@ class _BottomBarState extends State<BottomBar> {
     Color _changeCol = _isDark ? Colors.white : Colors.amber.shade700;
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(48.0),
+        preferredSize: Size.fromHeight(47.0),
         child: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -69,8 +69,9 @@ class _BottomBarState extends State<BottomBar> {
           backgroundColor: const Color.fromARGB(0, 255, 162, 0),
           elevation: 0,
           bottom: const PreferredSize(
-              child: Divider(color: Colors.grey, height: 1),
-              preferredSize: Size.fromHeight(1)),
+            preferredSize: Size.fromHeight(1),
+            child: Divider(color: Colors.grey, height: 1),
+          ),
         ),
       ),
       body: _page[_selectedIndex],

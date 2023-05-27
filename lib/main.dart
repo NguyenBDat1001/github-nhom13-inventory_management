@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inventory_management/consts/theme_data.dart';
 import 'package:inventory_management/provider/dark_theme_provider.dart';
 import 'package:inventory_management/screens/intro_screen.dart';
-import 'package:inventory_management/screens/appbar/setting_screen.dart';
+import 'package:inventory_management/screens/user_screens/setting_screen.dart';
 import 'package:inventory_management/ui/bottom_bar.dart';
 import 'package:provider/provider.dart';
 
