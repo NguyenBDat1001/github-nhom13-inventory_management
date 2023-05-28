@@ -9,10 +9,23 @@
       "client_info": {
         "mobilesdk_app_id": "1:68928939911:android:ad0c6a096712b985089522",
         "android_client_info": {
-          "package_name": "com.example.inventory_management"
+          "package_name": "com.example.InventorPlus"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "68928939911-3fntsjvk8hvs8mj7ri47b9qh8qe862ro.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.InventorPlus",
+            "certificate_hash": "6a1b1714b3fe4b0a56b03bb3b54f1cd5d5903e80"
+          }
+        },
+        {
+          "client_id": "68928939911-agcliuophaae3tiqo9lj29fqus0nkulg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAND9aIyMY3SEQpZR8mBf1IhH0VtwhtTZ0"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68928939911-agcliuophaae3tiqo9lj29fqus0nkulg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

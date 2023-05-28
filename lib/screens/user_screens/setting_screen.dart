@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management/provider/dark_theme_provider.dart';
-import 'package:inventory_management/ui/appbar.dart';
+import 'package:InventorPlus/provider/dark_theme_provider.dart';
+import 'package:InventorPlus/ui/appbar.dart';
 import 'package:provider/provider.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -16,7 +16,9 @@ class _SettingScreenState extends State<SettingScreen> {
     final themeState = Provider.of<DarkThemeProvider>(context);
     bool _isDark = themeState.getDarkTheme;
     return Scaffold(
-        appBar: CustomAppBar(title: "Cài đặt") /* PreferredSize(
+        appBar: CustomAppBar(
+            title:
+                "Cài đặt") /* PreferredSize(
           preferredSize: const Size.fromHeight(42.0),
           child: AppBar(
             title: Text(
@@ -29,14 +31,17 @@ class _SettingScreenState extends State<SettingScreen> {
             backgroundColor: Colors.amber.shade700,
             centerTitle: true,
           ),
-        )*/, 
+        )*/
+        ,
         body: Container(
             padding: const EdgeInsets.only(top: 30),
             child: Column(
               children: [
                 Center(
                   child: SwitchListTile(
-                    title: _isDark ? const Text("Nền tối") : const Text("Nền sáng"),
+                    title: _isDark
+                        ? const Text("Nền tối")
+                        : const Text("Nền sáng"),
                     secondary: Icon(themeState.getDarkTheme
                         ? Icons.dark_mode_outlined
                         : Icons.light_mode_outlined),

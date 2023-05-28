@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management/services/dark_theme_prefs.dart';
+import 'package:InventorPlus/services/dark_theme_prefs.dart';
+
 /*
 Định nghĩa một class DarkThemeProvider dùng để quản lý trạng thái chủ đề tối của ứng dụng.
 Class DarkThemeProvider kế thừa từ ChangeNotifier là một lớp được cung cấp bởi Flutter 

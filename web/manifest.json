@@ -1,6 +1,6 @@
 {
-    "name": "inventory_management",
-    "short_name": "inventory_management",
+    "name": "InventorPlus",
+    "short_name": "InventorPlus",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

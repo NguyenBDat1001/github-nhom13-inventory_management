@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:inventory_management/provider/dark_theme_provider.dart';
-import 'package:inventory_management/screens/bottombar_screens/export_screen.dart';
-import 'package:inventory_management/screens/bottombar_screens/home_screen.dart';
-import 'package:inventory_management/screens/bottombar_screens/import_screen.dart';
-import 'package:inventory_management/screens/bottombar_screens/user_screen.dart';
+import 'package:InventorPlus/provider/dark_theme_provider.dart';
+import 'package:InventorPlus/screens/bottombar_screens/export_screen.dart';
+import 'package:InventorPlus/screens/bottombar_screens/home_screen.dart';
+import 'package:InventorPlus/screens/bottombar_screens/import_screen.dart';
+import 'package:InventorPlus/screens/bottombar_screens/user_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -38,24 +38,25 @@ class _BottomBarState extends State<BottomBar> {
     Color _changeCol = _isDark ? Colors.white : Colors.amber.shade700;
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(47.0),
+        preferredSize: const Size.fromHeight(47.0),
         child: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(width: 40),
-              Image.asset(
-                'assets/images/IP(97).png',
-                width: 72,
-                height: 70,
-              ),
-              Text('InventorPlus',
-                  style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.amber.shade700,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic)),
-            ],
+          title: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/IP(97).png',
+                  width: 72,
+                  height: 70,
+                ),
+                Text('InventorPlus',
+                    style: TextStyle(
+                        fontSize: 22,
+                        color: Colors.amber.shade700,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic)),
+              ],
+            ),
           ),
           actions: [
             IconButton(

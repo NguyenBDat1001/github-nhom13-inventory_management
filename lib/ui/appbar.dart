@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:inventory_management/provider/dark_theme_provider.dart';
-import 'package:inventory_management/ui/widgets/text_widget.dart';
+import 'package:InventorPlus/provider/dark_theme_provider.dart';
+import 'package:InventorPlus/ui/widgets/text_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 

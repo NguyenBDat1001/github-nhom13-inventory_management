@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "inventory_management" "\0"
+            VALUE "FileDescription", "InventorPlus" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "inventory_management" "\0"
+            VALUE "InternalName", "InventorPlus" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "inventory_management.exe" "\0"
-            VALUE "ProductName", "inventory_management" "\0"
+            VALUE "OriginalFilename", "InventorPlus.exe" "\0"
+            VALUE "ProductName", "InventorPlus" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

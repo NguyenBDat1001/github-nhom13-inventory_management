@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management/screens/user_screens/setting_screen.dart';
-import 'package:inventory_management/screens/bottombar_screens/user_screen.dart';
+import 'package:InventorPlus/screens/user_screens/setting_screen.dart';
+import 'package:InventorPlus/screens/bottombar_screens/user_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
 class SidebarDrawer extends StatefulWidget {
@@ -16,6 +16,7 @@ class _SidebarDrawerState extends State<SidebarDrawer> {
     Navigator.pushReplacement(
         context, PageTransition(child: screen, type: PageTransitionType.fade));
   }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -30,7 +31,11 @@ class _SidebarDrawerState extends State<SidebarDrawer> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 CircleAvatar(
-                 child: Icon(Icons.account_circle,size: 50,),radius: 35,
+                  child: Icon(
+                    Icons.account_circle,
+                    size: 50,
+                  ),
+                  radius: 35,
                 ),
                 SizedBox(
                   height: 10,

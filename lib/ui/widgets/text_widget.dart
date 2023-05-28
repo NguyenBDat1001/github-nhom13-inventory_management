@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management/provider/dark_theme_provider.dart';
+import 'package:InventorPlus/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class TextWidget extends StatelessWidget {
@@ -26,7 +26,7 @@ class TextWidget extends StatelessWidget {
       maxLines: maxLines,
       style: TextStyle(
           overflow: TextOverflow.ellipsis,
-          color: color == null ?  _changeColor : color,
+          color: color == null ? _changeColor : color,
           fontSize: textSize,
           fontWeight: isBold == false ? FontWeight.normal : FontWeight.bold),
     );

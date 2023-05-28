@@ -1,11 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:inventory_management/provider/dark_theme_provider.dart';
-import 'package:inventory_management/screens/bottombar_screens/home_screen.dart';
-import 'package:inventory_management/screens/user_screens/setting_screen.dart';
-import 'package:inventory_management/ui/bottom_bar.dart';
-import 'package:inventory_management/ui/widgets/text_widget.dart';
+import 'package:InventorPlus/provider/dark_theme_provider.dart';
+import 'package:InventorPlus/screens/bottombar_screens/home_screen.dart';
+import 'package:InventorPlus/screens/user_screens/setting_screen.dart';
+import 'package:InventorPlus/ui/bottom_bar.dart';
+import 'package:InventorPlus/ui/widgets/text_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -53,12 +53,12 @@ class _UserScreenState extends State<UserScreen> {
       builder: (context) {
         return AlertDialog(
           title: Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             decoration: const BoxDecoration(
               border: Border(
                 bottom: BorderSide(
                   color: Color.fromARGB(201, 74, 74, 74),
-                  width: 1.7,         // Độ dày của đường viền
+                  width: 1.7, // Độ dày của đường viền
                 ),
               ),
             ),
@@ -86,17 +86,17 @@ class _UserScreenState extends State<UserScreen> {
                   }
                 },
                 child: Container(
-                  padding:
-                     const EdgeInsets.only(bottom: 10,top: 10, left: 18, right: 18),
+                  padding: const EdgeInsets.only(
+                      bottom: 9, top: 9, left: 16, right: 16),
                   decoration: BoxDecoration(
                       border: Border.all(
-                        color: Color.fromARGB(156, 84, 84, 84),
+                        color: Color.fromARGB(132, 121, 121, 121),
                         width: 1,
                       ),
-                      borderRadius: BorderRadius.circular(6)),
+                      borderRadius: BorderRadius.circular(3)),
                   child: TextWidget(
                     text: "Không",
-                    textSize: 18,
+                    textSize: 17,
                     isBold: true,
                     color: null,
                   ),
@@ -105,18 +105,18 @@ class _UserScreenState extends State<UserScreen> {
             TextButton(
                 onPressed: () => _showScreen(context, const BottomBar()),
                 child: Container(
-                  padding:
-                      const EdgeInsets.only(bottom: 10,top: 10, left: 18, right: 18),
+                  padding: const EdgeInsets.only(
+                      bottom: 9, top: 9, left: 29, right: 29),
                   decoration: BoxDecoration(
                       border: Border.all(
-                        color: Color.fromARGB(156, 84, 84, 84),
+                        color:  Color.fromARGB(132, 121, 121, 121),
                         width: 1,
                       ),
-                      borderRadius: BorderRadius.circular(6)),
+                      borderRadius: BorderRadius.circular(3)),
                   child: TextWidget(
                     text: "Có",
                     color: Colors.red,
-                    textSize: 18,
+                    textSize: 17,
                     isBold: true,
                   ),
                 )),

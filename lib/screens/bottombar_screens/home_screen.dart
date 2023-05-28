@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management/provider/dark_theme_provider.dart';
-import 'package:inventory_management/ui/bottom_bar.dart';
+import 'package:InventorPlus/provider/dark_theme_provider.dart';
+import 'package:InventorPlus/ui/bottom_bar.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,9 +13,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    
-    return Scaffold(
-      
-          );
+    return Scaffold();
   }
 }

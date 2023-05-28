@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management/consts/theme_data.dart';
-import 'package:inventory_management/provider/dark_theme_provider.dart';
-import 'package:inventory_management/screens/intro_screen.dart';
-import 'package:inventory_management/screens/user_screens/setting_screen.dart';
-import 'package:inventory_management/ui/bottom_bar.dart';
+import 'package:InventorPlus/consts/theme_data.dart';
+import 'package:InventorPlus/provider/dark_theme_provider.dart';
+import 'package:InventorPlus/screens/intro_screen.dart';
+import 'package:InventorPlus/screens/user_screens/setting_screen.dart';
+import 'package:InventorPlus/ui/bottom_bar.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MyApp());
-}
+Future main() async {
 
+    WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.removeAfter(initialization);
+    runApp(MyApp());
+}
+Future initialization(BuildContext? context) async {
+  // Load resources
+  await Future.delayed(Duration(seconds: 2));
+}
 class MyApp extends StatefulWidget {
   MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
+
+
 
 class _MyAppState extends State<MyApp> {
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();

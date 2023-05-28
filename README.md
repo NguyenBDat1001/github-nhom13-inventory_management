@@ -1,4 +1,4 @@
-# inventory_management
+# InventorPlus
 
 A new Flutter project.
 
