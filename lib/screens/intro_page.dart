@@ -1,3 +1,4 @@
+import 'package:InventorPlus/screens/landing_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:InventorPlus/ui/bottom_bar.dart';
@@ -58,7 +59,7 @@ class _IntroPageState extends State<IntroPage> {
                       text: subtitle,
                       style: TextStyle(
                           color: Colors.amber.shade700,
-                          fontSize: 17,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold),
                       children: [
                         TextSpan(
@@ -118,7 +119,7 @@ class _IntroPageState extends State<IntroPage> {
                 final prefs = await SharedPreferences.getInstance();
                 prefs.setBool("showHome", true);
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const BottomBar(),
+                  builder: (context) => const LandingPage(),
                 ));
               },
               child: const Text(

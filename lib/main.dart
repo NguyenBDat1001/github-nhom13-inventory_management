@@ -16,7 +16,7 @@ Future main() async {
 }
 Future initialization(BuildContext? context) async {
   // Load resources
-  await Future.delayed(Duration(seconds: 2));
+  await Future.delayed(Duration(seconds: 1));
 }
 class MyApp extends StatefulWidget {
   MyApp({super.key});
@@ -49,15 +49,18 @@ class _MyAppState extends State<MyApp> {
             create: (_) {
               return themeChangeProvider;
             },
-          )
+          ),
+          ChangeNotifierProvider(
+            create: (_) =>DarkThemeProvider() ,
+          ),
         ],
         child: Consumer<DarkThemeProvider>(
             builder: (context, themeProvider, child) {
           return MaterialApp(
               debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
+              title: 'InventorPlus application',
               theme: Styles.themeData(themeProvider.getDarkTheme, context),
-              home: const BottomBar());
+              home: const IntroPage());
         }));
   }
 }
