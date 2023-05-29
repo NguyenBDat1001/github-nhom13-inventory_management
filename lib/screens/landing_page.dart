@@ -1,4 +1,5 @@
 import 'package:InventorPlus/screens/intro_page.dart';
+import 'package:InventorPlus/screens/user/login_screen.dart';
 import 'package:InventorPlus/ui/bottom_bar.dart';
 import 'package:InventorPlus/ui/widgets/animation_background_widget.dart';
 import 'package:InventorPlus/ui/widgets/text_widget.dart';
@@ -59,7 +60,7 @@ class _LandingPageState extends State<LandingPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: Image.asset(
                     alignment: Alignment.topLeft,
                     "assets/images/Logo_app_inventorplus_landing.png",
@@ -68,7 +69,7 @@ class _LandingPageState extends State<LandingPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 7),
@@ -85,14 +86,14 @@ class _LandingPageState extends State<LandingPage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(25),
+            padding: EdgeInsets.all(27),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton(
                     style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(360, 50)),
+                        minimumSize: MaterialStateProperty.all(Size(365, 53)),
                         backgroundColor:
                             MaterialStatePropertyAll(Colors.amber.shade700),
                         shape:
@@ -100,10 +101,10 @@ class _LandingPageState extends State<LandingPage> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5)))),
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           PageTransition(
-                              child: const BottomBar(),
+                              child: const LoginScreen(),
                               type: PageTransitionType.fade));
                     },
                     child: Text(
@@ -112,7 +113,7 @@ class _LandingPageState extends State<LandingPage> {
                           TextStyle(fontWeight: FontWeight.w500, fontSize: 21),
                     )),
                 SizedBox(
-                  height: 11,
+                  height: 13,
                 ),
                 TextButton(
                     onPressed: () {},

@@ -1,8 +1,10 @@
+import 'package:InventorPlus/screens/landing_page.dart';
 import 'package:InventorPlus/ui/bottom_bar.dart';
 import 'package:InventorPlus/ui/widgets/animated_dialog_widget.dart';
 import 'package:InventorPlus/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:page_transition/page_transition.dart';
 
 class LogoutDialog extends StatefulWidget {
   const LogoutDialog({super.key});
@@ -72,7 +74,11 @@ class _LogoutDialogState extends State<LogoutDialog> {
           const SizedBox(height: 10),
           TextButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        child: const LandingPage(),
+                                        type: PageTransitionType.fade));
             },
             child: Container(
               padding:

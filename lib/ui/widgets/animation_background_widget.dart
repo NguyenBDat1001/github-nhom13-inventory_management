@@ -44,7 +44,7 @@ class _AnimationBackgroundState extends State<AnimationBackground>  with TickerP
               image: AssetImage("assets/images/zyro-image_landing.png",),
               alignment: FractionalOffset(_animation.value, 0) ,
               fit: BoxFit.cover,
-              opacity: 0.5)),
+              opacity: 0.9)),
     );
   }
 }
