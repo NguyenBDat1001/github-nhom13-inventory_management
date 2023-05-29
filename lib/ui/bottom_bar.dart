@@ -1,3 +1,5 @@
+import 'package:InventorPlus/ui/add_dialog.dart';
+import 'package:InventorPlus/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:InventorPlus/provider/dark_theme_provider.dart';
@@ -10,7 +12,6 @@ import 'package:provider/provider.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
-
   @override
   State<BottomBar> createState() => _BottomBarState();
 }
@@ -20,6 +21,7 @@ class _BottomBarState extends State<BottomBar> {
   final List _page = [
     const HomeScreen(),
     const ImportScreen(),
+    " ",
     const ExportScreen(),
     const UserScreen()
   ];
@@ -29,6 +31,16 @@ class _BottomBarState extends State<BottomBar> {
       PageTransition(
           child: _page[_selectedIndex], type: PageTransitionType.fade);
     });
+  }
+
+  Future<void> _showDiaLog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return MyDialog();
+      },
+    );
   }
 
   @override
@@ -76,36 +88,62 @@ class _BottomBarState extends State<BottomBar> {
         ),
       ),
       body: _page[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: _isDark ? Theme.of(context).cardColor : Colors.white,
-          type: BottomNavigationBarType.fixed,
-          showUnselectedLabels: false,
-          onTap: _selectedPage,
-          currentIndex: _selectedIndex,
-          unselectedItemColor: _changeCol,
-          selectedItemColor: _changeCol,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(
-                  _selectedIndex == 0 ? IconlyBold.home : IconlyLight.home),
-              label: "Trang chủ",
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(_selectedIndex == 1
-                    ? IconlyBold.arrowDownSquare
-                    : IconlyLight.arrowDownSquare),
-                label: "Nhập kho"),
-            BottomNavigationBarItem(
-                icon: Icon(_selectedIndex == 2
-                    ? IconlyBold.arrowUpSquare
-                    : IconlyLight.arrowUpSquare),
-                label: "Xuất kho"),
-            BottomNavigationBarItem(
-                icon: Icon(_selectedIndex == 3
-                    ? IconlyBold.profile
-                    : IconlyLight.profile),
-                label: "Tài khoản")
-          ]),
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 0.01,
+        clipBehavior: Clip.antiAlias,
+        child: BottomNavigationBar(
+            backgroundColor:
+                _isDark ? Theme.of(context).cardColor : Colors.white,
+            type: BottomNavigationBarType.fixed,
+            showUnselectedLabels: false,
+            onTap: _selectedPage,
+            currentIndex: _selectedIndex,
+            unselectedItemColor: _changeCol,
+            selectedItemColor: _changeCol,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(
+                    _selectedIndex == 0 ? IconlyBold.home : IconlyLight.home),
+                label: "Trang chủ",
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(_selectedIndex == 1
+                      ? IconlyBold.arrowDownSquare
+                      : IconlyLight.arrowDownSquare),
+                  label: "Nhập kho"),
+              BottomNavigationBarItem(
+                  icon: Icon(null), activeIcon: null, label: ""),
+              BottomNavigationBarItem(
+                  icon: Icon(_selectedIndex == 3
+                      ? IconlyBold.arrowUpSquare
+                      : IconlyLight.arrowUpSquare),
+                  label: "Xuất kho"),
+              BottomNavigationBarItem(
+                  icon: Icon(_selectedIndex == 4
+                      ? IconlyBold.profile
+                      : IconlyLight.profile),
+                  label: "Tài khoản")
+            ]),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: EdgeInsets.all(6.0),
+        child: FloatingActionButton(
+            onPressed: () {
+              _showDiaLog(context);
+            },
+            hoverElevation: 10,
+            splashColor: Colors.grey,
+            backgroundColor: Colors.amber.shade700,
+            tooltip: "Thêm mới đơn hàng",
+            elevation: 6,
+            child: Icon(
+              Icons.add,
+              color: _isDark ? Colors.white : Colors.black,
+              size: 30,
+            )),
+      ),
     );
   }
 }
