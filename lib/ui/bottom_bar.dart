@@ -1,4 +1,4 @@
-import 'package:InventorPlus/ui/add_dialog.dart';
+import 'package:InventorPlus/ui/add_dialog_box.dart';
 import 'package:InventorPlus/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';

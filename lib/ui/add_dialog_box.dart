@@ -190,11 +190,22 @@ class _MyDialogState extends State<MyDialog> {
                 SizedBox(
                   height: 18,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text("Lưu"),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: ElevatedButton(
+                     style: ButtonStyle(
+                          minimumSize: MaterialStateProperty.all(Size(90, 38)),
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.amber.shade700),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5)))),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: TextWidget(text: "Lưu", textSize: 17, color: null),
+                  ),
                 ),
               ],
             ),

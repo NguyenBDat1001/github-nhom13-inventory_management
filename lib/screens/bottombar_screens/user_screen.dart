@@ -63,88 +63,91 @@ class _UserScreenState extends State<UserScreen> {
     final themeState = Provider.of<DarkThemeProvider>(context);
     Color _changeColor = themeState.getDarkTheme ? Colors.white : Colors.black;
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: AssetImage(
-                      "assets/images/photo-1633332755192-727a05c4013d.png"),
-                  radius: 68,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                RichText(
-                    text: TextSpan(
-                        text: "Xin chào, ",
-                        style: TextStyle(
-                            color: Colors.amber.shade700,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 26),
-                        children: <TextSpan>[
-                      TextSpan(
-                          text: "User1",
-                          style: TextStyle(
-                              color: _changeColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 23),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              print("My name is ");
-                            })
-                    ])),
-                const SizedBox(
-                  height: 5,
-                ),
-                TextWidget(
-                    text: "nguyendat20018@gmail.com",
-                    color: Colors.amber.shade700,
-                    textSize: 15),
-                const SizedBox(
-                  height: 15,
-                ),
-                const Divider(
-                  thickness: 2,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                _listTiles(
-                    title: "Chỉnh sửa thông tin",
-                    subtitle: "User1",
-                    icon: IconlyBroken.editSquare,
-                    onPressed: () {}),
-                _listTiles(
-                    title: "Cài đặt",
-                    icon: IconlyBroken.setting,
-                    onPressed: () =>
-                        _showScreen(context, const SettingScreen())),
-                _listTiles(
-                    title: "Góp ý, hỗ trợ",
-                    icon: IconlyBroken.send,
-                    onPressed: () {}),
-                _listTiles(
-                    title: "Đăng xuất",
-                    icon: IconlyBroken.logout,
-                    onPressed: () {
-                      _showLogoutDialog();
-                    }),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: TextWidget(
-                      text: "Phiên bản: v1.0.0",
-                      color: Colors.amber.shade700,
-                      textSize: 13),
-                )
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(height: 20),
+            const CircleAvatar(
+              backgroundColor: Colors.transparent,
+              backgroundImage: AssetImage(
+                  "assets/images/photo-1633332755192-727a05c4013d.png"),
+              radius: 72,
             ),
-          ),
+            const SizedBox(
+              height: 18,
+            ),
+            RichText(
+                text: TextSpan(
+                    text: "Xin chào, ",
+                    style: TextStyle(
+                        color: Colors.amber.shade700,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 26),
+                    children: <TextSpan>[
+                  TextSpan(
+                      text: "User1",
+                      style: TextStyle(
+                          color: _changeColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 23),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          print("My name is ");
+                        })
+                ])),
+            const SizedBox(
+              height: 5,
+            ),
+            TextWidget(
+                text: "nguyendat20018@gmail.com",
+                color: Colors.amber.shade700,
+                textSize: 15),
+            const SizedBox(
+              height: 10,
+            ),
+            const Divider(
+              thickness: 2,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              padding: EdgeInsets.all(7),
+              child: Column(
+                children: [
+                  _listTiles(
+                      title: "Chỉnh sửa thông tin",
+                      subtitle: "User1",
+                      icon: IconlyBroken.editSquare,
+                      onPressed: () {}),
+                  _listTiles(
+                      title: "Cài đặt",
+                      icon: IconlyBroken.setting,
+                      onPressed: () =>
+                          _showScreen(context, const SettingScreen())),
+                  _listTiles(
+                      title: "Góp ý, hỗ trợ",
+                      icon: IconlyBroken.send,
+                      onPressed: () {}),
+                  _listTiles(
+                      title: "Đăng xuất",
+                      icon: IconlyBroken.logout,
+                      onPressed: () {
+                        _showLogoutDialog();
+                      }),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: TextWidget(
+                        text: "Phiên bản: v1.0.0",
+                        color: Colors.amber.shade700,
+                        textSize: 13),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );

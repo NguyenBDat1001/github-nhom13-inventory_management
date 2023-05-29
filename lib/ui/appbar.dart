@@ -16,11 +16,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     bool _isDark = themeState.getDarkTheme;
 
     return AppBar(
-      title: TextWidget(
-        
-          text: title,
-          textSize: 24,
-          color: _isDark ? Colors.white : Colors.amber.shade700),
+      title: Text(
+        title,
+        style: TextStyle(
+            fontSize: 24,
+            fontWeight:FontWeight.w500 ,
+            color: _isDark ? Colors.white : Colors.amber.shade700),
+      ),
       backgroundColor: const Color.fromARGB(0, 255, 162, 0),
       elevation: 0,
       centerTitle: true,

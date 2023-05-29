@@ -1,5 +1,6 @@
 import 'package:InventorPlus/screens/intro_page.dart';
 import 'package:InventorPlus/ui/bottom_bar.dart';
+import 'package:InventorPlus/ui/widgets/animation_background_widget.dart';
 import 'package:InventorPlus/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -12,47 +13,20 @@ class LandingPage extends StatefulWidget {
   State<LandingPage> createState() => _LandingPageState();
 }
 
-class _LandingPageState extends State<LandingPage>
-    with TickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _animation;
-  @override
-  void initState() {
-    super.initState();
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 20));
-    _animation =
-        CurvedAnimation(parent: _animationController, curve: Curves.linear)
-          ..addListener(() {
-            setState(() {});
-          })
-          ..addStatusListener((animationStatus) {
-            if (animationStatus == AnimationStatus.completed) {
-              _animationController.reset();
-              _animationController.forward();
-            }
-          });
-    _animationController.forward();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
+class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(
+          AnimationBackground(),
+          /* Image.asset(
             "assets/images/zyro-image_landing.png",
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
             alignment: FractionalOffset(_animation.value, 0),
-          ),
+          ), */
           Container(
             padding: EdgeInsets.only(top: 20),
             child: TextButton(
@@ -126,8 +100,11 @@ class _LandingPageState extends State<LandingPage>
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5)))),
                     onPressed: () {
-                      Navigator.push(context,PageTransition(
-            child: const BottomBar(), type: PageTransitionType.fade) );
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              child: const BottomBar(),
+                              type: PageTransitionType.fade));
                     },
                     child: Text(
                       "Đăng nhập",
