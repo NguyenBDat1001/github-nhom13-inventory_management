@@ -1,12 +1,18 @@
+import 'package:InventorPlus/screens/user/forget_pass.dart';
+import 'package:InventorPlus/screens/user/register_screen.dart';
+import 'package:InventorPlus/services/global_metthods.dart';
 import 'package:InventorPlus/ui/bottom_bar.dart';
 import 'package:InventorPlus/ui/loading_manager.dart';
 import 'package:InventorPlus/ui/widgets/animation_background_widget.dart';
+import 'package:InventorPlus/ui/widgets/auth_button.dart';
+import 'package:InventorPlus/ui/widgets/back_widget.dart';
 import 'package:InventorPlus/ui/widgets/text_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const routeName = '/LoginScreen';
   const LoginScreen({super.key});
 
   @override
@@ -26,14 +32,16 @@ class _LoginScreenState extends State<LoginScreen> {
     _passFocusNode.dispose();
     super.dispose();
   }
- bool _isLoading = false;
+
+  bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: LoadingManager(isLoading: _isLoading,
-          child: Stack(
-              children: [
-          AnimationBackground(),
+        body: LoadingManager(
+      isLoading: _isLoading,
+      child: Stack(
+        children: [
+          const AnimationBackground(),
           Container(
             color: Colors.black.withOpacity(0.2),
           ),
@@ -45,21 +53,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    SizedBox(height: 100),
+                    const SizedBox(height: 45),
+                    const BackWidget(),
+                    const SizedBox(
+                      height: 35,
+                    ),
                     TextWidget(
                       text: "Thật tuyệt khi bạn trở lại!",
                       textSize: 31,
                       color: Colors.white,
                       isBold: true,
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 15),
                     TextWidget(
                       text: "Đăng nhập để tiếp tục",
                       color: Colors.amber.shade700,
                       textSize: 21,
                     ),
-                    SizedBox(
-                      height: 40.0,
+                    const SizedBox(
+                      height: 70.0,
                     ),
                     Form(
                         key: _formKey,
@@ -78,20 +90,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                   return null;
                                 }
                               },
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                   hintText: "Nhập Email (ex: abc@gmail.com)",
                                   hintStyle: TextStyle(color: Colors.white),
                                   enabledBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.amber.shade700),
+                                    borderSide: BorderSide(
+                                        color: Colors.amber.shade700),
                                   ),
                                   focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: Colors.amber.shade700))),
                             ),
-                            SizedBox(
-                              height: 15,
+                            const SizedBox(
+                              height: 25,
                             ),
                             TextFormField(
                               textInputAction: TextInputAction.done,
@@ -107,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   return null;
                                 }
                               },
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                   suffixIcon: GestureDetector(
                                     onTap: () {
@@ -125,8 +137,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   hintText: "Nhập mật khẩu (tối thiểu 6 ký tự)",
                                   hintStyle: TextStyle(color: Colors.white),
                                   enabledBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.amber.shade700),
+                                    borderSide: BorderSide(
+                                        color: Colors.amber.shade700),
                                   ),
                                   focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -134,100 +146,66 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ],
                         )),
-                    SizedBox(
-                      height: 15,
+                    const SizedBox(
+                      height: 10,
                     ),
                     Align(
-                      alignment: Alignment.topRight,
-                      child: TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Quên mật khẩu?",
-                            style: TextStyle(
+                    alignment: Alignment.topRight,
+                    child: TextButton(
+                      onPressed: () {
+                        GlobalMethods.navigateTo(
+                            ctx: context,
+                            routeName: ForgetPasswordScreen.routeName);
+                      },
+                      child:  Text(
+                        'Quên mật khẩu?',
+                        style: TextStyle(
                               color: Colors.amber.shade700,
                               fontSize: 18,
                             ),
-                          )),
+                      ),
                     ),
-                    SizedBox(height: 15),
+                  ),
+                
+                    const SizedBox(height: 28),
                     Container(
                       alignment: Alignment.center,
                       child: Column(
                         children: [
-                          ElevatedButton(
-                              style: ButtonStyle(
-                                  minimumSize:
-                                      MaterialStateProperty.all(Size(280, 50)),
-                                  backgroundColor: MaterialStatePropertyAll(
-                                      Colors.amber.shade700),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)))),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        child: const BottomBar(),
-                                        type: PageTransitionType.fade));
-                              },
-                              child: Text(
-                                "Đăng nhập",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400, fontSize: 21),
-                              )),
-                          SizedBox(
-                            height: 18,
+                          AuthButton(fct: () {}, buttonText: "Đăng nhập"),
+                          const SizedBox(
+                            height: 185,
                           ),
-                          Row(
-                            children: [
-                              const Expanded(
-                                child: Divider(
-                                  color: Colors.white,
-                                  thickness: 1,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 6,
-                              ),
-                              TextWidget(
-                                text: 'hoặc đăng nhập bằng',
-                                color: Colors.white,
-                                textSize: 16,
-                              ),
-                              const SizedBox(
-                                width: 6,
-                              ),
-                              const Expanded(
-                                child: Divider(
-                                  color: Colors.white,
-                                  thickness: 1,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 200,
-                          ),
-                          TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                "Bạn chưa có tài khoản?",
-                                maxLines: 1,
-                                style: TextStyle(
-                                  color: Colors.amber.shade700,
-                                  fontSize: 19,
-                                ),
-                              )),
+                          RichText(
+                              text: TextSpan(
+                                  text: 'Bạn chưa có tài khoản?',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 19,
+                                  ),
+                                  children: [
+                                TextSpan(
+                                    text: ' Đăng ký',
+                                    style: TextStyle(
+                                        color: Colors.amber.shade700,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w400),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        GlobalMethods.navigateTo(
+                                            ctx: context,
+                                            routeName:
+                                                RegisterScreen.routeName);
+                                      }),
+                              ]))
                         ],
                       ),
                     ),
                   ],
                 )),
           )
-              ],
-            ),
-        ));
+        ],
+      ),
+    ));
   }
 }

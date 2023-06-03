@@ -1,5 +1,7 @@
+import 'package:InventorPlus/screens/bottombar_screens/user_screen.dart';
 import 'package:InventorPlus/screens/landing_page.dart';
 import 'package:InventorPlus/screens/user/login_screen.dart';
+import 'package:InventorPlus/screens/user/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:InventorPlus/consts/theme_data.dart';
 import 'package:InventorPlus/provider/dark_theme_provider.dart';
@@ -9,24 +11,25 @@ import 'package:InventorPlus/ui/bottom_bar.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 
-Future main() async {
+import 'screens/user/forget_pass.dart';
 
-    WidgetsFlutterBinding.ensureInitialized();
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.removeAfter(initialization);
-    runApp(MyApp());
+  runApp(MyApp());
 }
+
 Future initialization(BuildContext? context) async {
   // Load resources
   await Future.delayed(Duration(seconds: 1));
 }
+
 class MyApp extends StatefulWidget {
   MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
-
-
 
 class _MyAppState extends State<MyApp> {
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
@@ -52,16 +55,24 @@ class _MyAppState extends State<MyApp> {
             },
           ),
           ChangeNotifierProvider(
-            create: (_) =>DarkThemeProvider() ,
+            create: (_) => DarkThemeProvider(),
           ),
         ],
         child: Consumer<DarkThemeProvider>(
             builder: (context, themeProvider, child) {
           return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'InventorPlus application',
-              theme: Styles.themeData(themeProvider.getDarkTheme, context),
-              home: const IntroPage());
+            debugShowCheckedModeBanner: false,
+            title: 'InventorPlus application',
+            theme: Styles.themeData(themeProvider.getDarkTheme, context),
+            home: const IntroPage(),
+            routes: {
+              RegisterScreen.routeName: (ctx) => const RegisterScreen(),
+              LoginScreen.routeName: (ctx) => const LoginScreen(),
+              ForgetPasswordScreen.routeName: (ctx) =>
+                  const ForgetPasswordScreen(),
+              LandingPage.routeName: (ctx) => const LandingPage(),
+            },
+          );
         }));
   }
 }

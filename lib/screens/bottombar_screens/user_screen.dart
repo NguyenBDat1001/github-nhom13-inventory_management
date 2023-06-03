@@ -1,12 +1,9 @@
 import 'package:InventorPlus/ui/logout_dialog.dart';
-import 'package:InventorPlus/ui/widgets/animated_dialog_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:InventorPlus/provider/dark_theme_provider.dart';
-import 'package:InventorPlus/screens/bottombar_screens/home_screen.dart';
 import 'package:InventorPlus/screens/user_screens/setting_screen.dart';
-import 'package:InventorPlus/ui/bottom_bar.dart';
 import 'package:InventorPlus/ui/widgets/text_widget.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -53,7 +50,7 @@ class _UserScreenState extends State<UserScreen> {
     await showDialog(
       context: context,
       builder: (context) {
-        return LogoutDialog();
+        return const LogoutDialog();
       },
     );
   }

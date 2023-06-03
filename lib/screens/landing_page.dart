@@ -1,5 +1,8 @@
 import 'package:InventorPlus/screens/intro_page.dart';
+import 'package:InventorPlus/screens/user/forget_pass.dart';
 import 'package:InventorPlus/screens/user/login_screen.dart';
+import 'package:InventorPlus/screens/user/register_screen.dart';
+import 'package:InventorPlus/services/global_metthods.dart';
 import 'package:InventorPlus/ui/bottom_bar.dart';
 import 'package:InventorPlus/ui/widgets/animation_background_widget.dart';
 import 'package:InventorPlus/ui/widgets/text_widget.dart';
@@ -8,6 +11,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 
 class LandingPage extends StatefulWidget {
+  static const routeName = '/LandingPage';
   const LandingPage({super.key});
 
   @override
@@ -20,38 +24,20 @@ class _LandingPageState extends State<LandingPage> {
     return Scaffold(
       body: Stack(
         children: [
-          AnimationBackground(),
-          /* Image.asset(
-            "assets/images/zyro-image_landing.png",
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-            alignment: FractionalOffset(_animation.value, 0),
-          ), */
+          const AnimationBackground(),
           Container(
-            padding: EdgeInsets.only(top: 20),
-            child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => const IntroPage(),
-                    ),
-                  );
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextWidget(
-                        text: "Quay lại", textSize: 16, color: Colors.white),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Icon(
-                      IconlyLight.arrowRight2,
-                      color: Colors.white,
-                    ),
-                  ],
-                )),
+            alignment: Alignment.topRight,
+            padding: EdgeInsets.only(top: 40, right: 8),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(12),
+              onTap: () {
+                Navigator.of(context).pushReplacement(PageTransition(
+                    child: const IntroPage(),
+                    type: PageTransitionType.rightToLeftWithFade));
+              },
+              child: TextWidget(
+                  text: "Quay lại", textSize: 20, color: Colors.amber.shade700),
+            ),
           ),
           Container(
             margin: EdgeInsets.only(top: 75),
@@ -68,25 +54,32 @@ class _LandingPageState extends State<LandingPage> {
                     cacheWidth: 228,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 7),
-                  child: Text(
-                    "Chào mừng đến với InventorPlus - ứng dụng quản lý kho hiệu quả",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
-                  ),
-                ),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Text.rich(
+                      TextSpan(
+                          text: "InventorPlus\n",
+                          style: TextStyle(
+                              fontSize: 46,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.amber.shade700),
+                          children: const [
+                            TextSpan(
+                                text: "Ứng dụng quản lý kho hiệu quả",
+                                style: TextStyle(
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white))
+                          ]),
+                    ))
               ],
             ),
           ),
           Container(
-            padding: EdgeInsets.all(27),
+            padding: const EdgeInsets.all(27),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -101,23 +94,23 @@ class _LandingPageState extends State<LandingPage> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5)))),
                     onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          PageTransition(
-                              child: const LoginScreen(),
-                              type: PageTransitionType.fade));
+                      GlobalMethods.navigateTo(
+                          ctx: context, routeName: LoginScreen.routeName);
                     },
-                    child: Text(
+                    child: const Text(
                       "Đăng nhập",
                       style:
                           TextStyle(fontWeight: FontWeight.w500, fontSize: 21),
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 13,
                 ),
-                TextButton(
-                    onPressed: () {},
-                    child: Text(
+                InkWell(
+                    onTap: () {
+                      GlobalMethods.navigateTo(
+                          ctx: context, routeName: RegisterScreen.routeName);
+                    },
+                    child: const Text(
                       "Bạn chưa có tài khoản?",
                       style: TextStyle(
                           color: Colors.white,

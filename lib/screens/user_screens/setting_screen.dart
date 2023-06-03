@@ -16,23 +16,7 @@ class _SettingScreenState extends State<SettingScreen> {
     final themeState = Provider.of<DarkThemeProvider>(context);
     bool _isDark = themeState.getDarkTheme;
     return Scaffold(
-        appBar: CustomAppBar(
-            title:
-                "Cài đặt") /* PreferredSize(
-          preferredSize: const Size.fromHeight(42.0),
-          child: AppBar(
-            title: Text(
-              'Cài đặt',
-              style: TextStyle(
-                  color: _isDark
-                      ?  Colors.white
-                      : Colors.black87),
-            ),
-            backgroundColor: Colors.amber.shade700,
-            centerTitle: true,
-          ),
-        )*/
-        ,
+        appBar: const CustomAppBar(title: "Cài đặt"),
         body: Container(
             padding: const EdgeInsets.only(top: 30),
             child: Column(

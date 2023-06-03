@@ -1,7 +1,9 @@
 import 'package:InventorPlus/screens/landing_page.dart';
+import 'package:InventorPlus/services/global_metthods.dart';
 import 'package:flutter/material.dart';
 
 import 'package:InventorPlus/ui/bottom_bar.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -118,9 +120,8 @@ class _IntroPageState extends State<IntroPage> {
               onPressed: () async {
                 final prefs = await SharedPreferences.getInstance();
                 prefs.setBool("showHome", true);
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const LandingPage(),
-                ));
+                GlobalMethods.navigateTo(
+                    ctx: context, routeName: LandingPage.routeName);
               },
               child: const Text(
                 "BẮT ĐẦU",

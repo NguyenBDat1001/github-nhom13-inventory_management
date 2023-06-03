@@ -19,7 +19,7 @@ class _LogoutDialogState extends State<LogoutDialog> {
     return AnimatedDialog(
       dialog: AlertDialog(
         title: Container(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.only(bottom: 8),
           decoration: const BoxDecoration(
             border: Border(
               bottom: BorderSide(
@@ -31,7 +31,7 @@ class _LogoutDialogState extends State<LogoutDialog> {
           child: Row(
             children: const [
               Icon(
-                IconlyBroken.danger,
+                IconlyBroken.danger,size: 30,
               ),
               SizedBox(
                 width: 5,
@@ -39,7 +39,7 @@ class _LogoutDialogState extends State<LogoutDialog> {
               Text(
                 "Đăng xuất",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.bold,fontSize: 23
                 ),
               ),
             ],
@@ -47,55 +47,61 @@ class _LogoutDialogState extends State<LogoutDialog> {
         ),
         content: const Text("Bạn có chắc muốn đăng xuất không?"),
         actions: [
-          TextButton(
-            onPressed: () {
-              if (Navigator.canPop(context)) {
-                Navigator.pop(context);
-              }
-            },
-            child: Container(
-              padding:
-                  const EdgeInsets.only(bottom: 9, top: 9, left: 16, right: 16),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Color.fromARGB(132, 121, 121, 121),
-                  width: 1,
+          Padding(
+            padding: const EdgeInsets.only(right: 10,bottom: 6),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Color.fromARGB(132, 121, 121, 121),
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      if (Navigator.canPop(context)) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: TextWidget(
+                      text: "Không",
+                      textSize: 18,
+                      isBold: true,
+                      color: null,
+                    ),
+                  ),
                 ),
-                borderRadius: BorderRadius.circular(3),
-              ),
-              child: TextWidget(
-                text: "Không",
-                textSize: 17,
-                isBold: true,
-                color: null,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          TextButton(
-            onPressed: () {
-              Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        child: const LandingPage(),
-                                        type: PageTransitionType.fade));
-            },
-            child: Container(
-              padding:
-                  const EdgeInsets.only(bottom: 9, top: 9, left: 29, right: 29),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Color.fromARGB(132, 121, 121, 121),
-                  width: 1,
+                const SizedBox(width: 30),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color.fromARGB(132, 121, 121, 121),
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              child: const LandingPage(),
+                              type: PageTransitionType.fade));
+                    },
+                    child: TextWidget(
+                      text: "Có",
+                      color: Colors.red,
+                      textSize: 18,
+                      isBold: true,
+                    ),
+                  ),
                 ),
-                borderRadius: BorderRadius.circular(3),
-              ),
-              child: TextWidget(
-                text: "Có",
-                color: Colors.red,
-                textSize: 17,
-                isBold: true,
-              ),
+              ],
             ),
           ),
         ],
