@@ -42,7 +42,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         await authInstance.sendPasswordResetEmail(
             email: _emailTextController.text.toLowerCase());
         Fluttertoast.showToast(
-          msg: "Một email đã được gửi đến địa chỉ email của bạn",
+          msg: "Một email xác nhận đã được gửi đến địa chỉ email của bạn",
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -78,7 +78,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         isLoading: _isLoading,
         child: Stack(
           children: [
-           const AnimationBackground(),
+          // const AnimationBackground(),
           Container(
             color: Colors.black.withOpacity(0.2),
           ),

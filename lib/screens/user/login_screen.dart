@@ -1,3 +1,5 @@
+import 'package:InventorPlus/consts/firebase_consts.dart';
+import 'package:InventorPlus/loading_screen.dart';
 import 'package:InventorPlus/screens/user/forget_pass.dart';
 import 'package:InventorPlus/screens/user/register_screen.dart';
 import 'package:InventorPlus/services/global_metthods.dart';
@@ -7,9 +9,9 @@ import 'package:InventorPlus/ui/widgets/animation_background_widget.dart';
 import 'package:InventorPlus/ui/widgets/auth_button.dart';
 import 'package:InventorPlus/ui/widgets/back_widget.dart';
 import 'package:InventorPlus/ui/widgets/text_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/LoginScreen';
@@ -34,6 +36,43 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   bool _isLoading = false;
+    void _submitFormOnLogin() async {
+    final isValid = _formKey.currentState!.validate();
+    FocusScope.of(context).unfocus();
+
+    if (isValid) {
+      _formKey.currentState!.save();
+      setState(() {
+        _isLoading = true;
+      });
+      try {
+        await authInstance.signInWithEmailAndPassword(
+            email: _emailTextController.text.toLowerCase().trim(),
+            password: _passTextController.text.trim());
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const LoadingScreen(),
+          ),
+        );
+        print('Đăng nhập thành công');
+      } on FirebaseException catch (error) {
+        GlobalMethods.errorDialog(
+            subtitle: '${error.message}', context: context);
+        setState(() {
+          _isLoading = false;
+        });
+      } catch (error) {
+        GlobalMethods.errorDialog(subtitle: '$error', context: context);
+        setState(() {
+          _isLoading = false;
+        });
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
       isLoading: _isLoading,
       child: Stack(
         children: [
-          const AnimationBackground(),
+         // const AnimationBackground(),
           Container(
             color: Colors.black.withOpacity(0.2),
           ),
@@ -93,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                   hintText: "Nhập Email (ex: abc@gmail.com)",
-                                  hintStyle: TextStyle(color: Colors.white),
+                                  hintStyle: const TextStyle(color: Colors.white),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Colors.amber.shade700),
@@ -108,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             TextFormField(
                               textInputAction: TextInputAction.done,
                               onEditingComplete: () {},
-                              controller: _emailTextController,
+                              controller: _passTextController,
                               focusNode: _passFocusNode,
                               obscureText: _obscureText,
                               keyboardType: TextInputType.visiblePassword,
@@ -172,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       alignment: Alignment.center,
                       child: Column(
                         children: [
-                          AuthButton(fct: () {}, buttonText: "Đăng nhập"),
+                          AuthButton(fct: _submitFormOnLogin, buttonText: "Đăng nhập"),
                           const SizedBox(
                             height: 185,
                           ),
