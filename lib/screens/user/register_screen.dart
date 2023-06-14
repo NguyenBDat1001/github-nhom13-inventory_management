@@ -5,6 +5,7 @@ import 'package:InventorPlus/loading_screen.dart';
 import 'package:InventorPlus/screens/user/login_screen.dart';
 import 'package:InventorPlus/services/global_metthods.dart';
 import 'package:InventorPlus/services/utils.dart';
+import 'package:InventorPlus/ui/bottom_bar.dart';
 import 'package:InventorPlus/ui/loading_manager.dart';
 import 'package:InventorPlus/ui/widgets/animation_background_widget.dart';
 import 'package:InventorPlus/ui/widgets/auth_button.dart';
@@ -67,19 +68,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
         await FirebaseFirestore.instance.collection('users').doc(_uid).set({
           'id': _uid,
           'name': _fullNameController.text,
-          'email': _emailTextController.text.toLowerCase(),
-          'shipping-address': _addressTextController.text,
-          'userWish': [],
-          'userCart': [],
+          'email': _emailTextController.text.toLowerCase().trim(),
+          'warehouse-address': _addressTextController.text,
+          /*         'userWish': [],
+          'userCart': [], */
           'createdAt': Timestamp.now(),
         });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.amber.shade700,
+            content: const Text('Đăng ký tài khoản thành công'),
+            duration: const Duration(seconds: 2),
+          ),
+        );
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => const LoadingScreen(),
         ));
         print("Đăng kí tài khoản thành công");
-      } on FirebaseAuthException catch (error) {
-        GlobalMethods.errorDialog(
-            subtitle: "${error.message}", context: context);
+      } on FirebaseException catch (error) {
+        if (error.code == 'email-already-in-use') {
+          GlobalMethods.errorDialog(
+              subtitle: "Địa chỉ Email đã có người sử dụng!", context: context);
+        } else {
+          GlobalMethods.errorDialog(
+              subtitle: "${error.message}", context: context);
+        }
         setState(() {
           _isLoading = false;
         });
@@ -104,7 +117,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: <Widget>[
             //  const AnimationBackground(),
             Container(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withOpacity(0.3),
             ),
             SingleChildScrollView(
               padding: const EdgeInsets.all(20),
@@ -122,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     text: "Xin chào",
                     textSize: 37,
                     color: Colors.white,
-                    isBold: true,
+                    textWeight: FontWeight.bold
                   ),
                   const SizedBox(height: 8),
                   TextWidget(
@@ -259,7 +272,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           // onEditingComplete: _submitFormOnRegister,
                           controller: _addressTextController,
                           validator: (value) {
-                            if (value!.isEmpty || value.length < 10) {
+                            if (value!.isEmpty || value.length < 8) {
                               return "Vui lòng nhập một địa chỉ hợp lệ";
                             } else {
                               return null;
@@ -288,7 +301,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 35,
+                    height: 45,
                   ),
                   const Text(
                     "Bằng cách nhấp vào đăng ký bên dưới, tài khoản của bạn sẽ được tạo thành công",
@@ -296,7 +309,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
                   AuthButton(
                     buttonText: 'Đăng ký',
@@ -305,7 +318,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 35,
                   ),
                   RichText(
                       text: TextSpan(

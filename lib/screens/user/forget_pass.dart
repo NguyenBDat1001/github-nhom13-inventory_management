@@ -33,8 +33,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     if (_emailTextController.text.isEmpty ||
         !_emailTextController.text.contains("@")) {
       GlobalMethods.errorDialog(
-          subtitle: 'Xin vui lòng điền địa chỉ email chính xác', context: context);
-    } else {
+          subtitle: 'Địa chỉ Email không hợp lệ', context: context);
+    } 
+    else {
       setState(() {
         _isLoading = true;
       });
@@ -51,13 +52,17 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           fontSize: 16.0,
         );
       } on FirebaseException catch (error) {
+        if (error.code == 'user-not-found') {
+          GlobalMethods.errorDialog(
+               subtitle: 'Địa chỉ Email không chính xác, Vui lòng nhập lại', context: context);
+        }
         GlobalMethods.errorDialog(
-            subtitle: '${error.message}', context: context);
+            subtitle: 'Địa chỉ Email không hợp lệ', context: context);
         setState(() {
           _isLoading = false;
         });
       } catch (error) {
-        GlobalMethods.errorDialog(subtitle: '$error', context: context);
+        GlobalMethods.errorDialog(subtitle: 'Địa chỉ Email không hợp lệ', context: context);
         setState(() {
           _isLoading = false;
         });
@@ -78,9 +83,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         isLoading: _isLoading,
         child: Stack(
           children: [
-          // const AnimationBackground(),
+       // const AnimationBackground(),
           Container(
-            color: Colors.black.withOpacity(0.2),
+            color: Colors.black.withOpacity(0.3),
           ),
             Padding(
               padding: const EdgeInsets.symmetric(

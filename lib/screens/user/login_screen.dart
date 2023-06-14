@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   bool _isLoading = false;
-    void _submitFormOnLogin() async {
+  void _submitFormOnLogin() async {
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
 
@@ -49,6 +49,13 @@ class _LoginScreenState extends State<LoginScreen> {
         await authInstance.signInWithEmailAndPassword(
             email: _emailTextController.text.toLowerCase().trim(),
             password: _passTextController.text.trim());
+             ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.amber.shade700,
+            content: const Text('Đăng nhập thành công'),
+            duration: const Duration(seconds: 2),
+          ),
+        );
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => const LoadingScreen(),
@@ -56,13 +63,21 @@ class _LoginScreenState extends State<LoginScreen> {
         );
         print('Đăng nhập thành công');
       } on FirebaseException catch (error) {
-        GlobalMethods.errorDialog(
-            subtitle: '${error.message}', context: context);
-        setState(() {
-          _isLoading = false;
-        });
+        if (error.code == 'user-not-found') {
+          GlobalMethods.errorDialog(
+               subtitle: 'Email hoặc mật khẩu không chính xác', context: context);
+        } else if (error.code == "wrong-password") {
+            GlobalMethods.errorDialog(
+              subtitle: 'Email hoặc mật khẩu không chính xác', context: context);
+        } else {
+          GlobalMethods.errorDialog(
+              subtitle: 'Địa chỉ Email không hợp lệ', context: context);
+          setState(() {
+            _isLoading = false;
+          });
+        }
       } catch (error) {
-        GlobalMethods.errorDialog(subtitle: '$error', context: context);
+        GlobalMethods.errorDialog(subtitle: 'Địa chỉ Email không hợp lệ', context: context);
         setState(() {
           _isLoading = false;
         });
@@ -73,6 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,9 +96,9 @@ class _LoginScreenState extends State<LoginScreen> {
       isLoading: _isLoading,
       child: Stack(
         children: [
-         // const AnimationBackground(),
+          // const AnimationBackground(),
           Container(
-            color: Colors.black.withOpacity(0.2),
+            color: Colors.black.withOpacity(0.3),
           ),
           SingleChildScrollView(
             child: Padding(
@@ -101,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: "Thật tuyệt khi bạn trở lại!",
                       textSize: 31,
                       color: Colors.white,
-                      isBold: true,
+                      textWeight: FontWeight.bold,
                     ),
                     const SizedBox(height: 15),
                     TextWidget(
@@ -132,7 +148,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                   hintText: "Nhập Email (ex: abc@gmail.com)",
-                                  hintStyle: const TextStyle(color: Colors.white),
+                                  hintStyle:
+                                      const TextStyle(color: Colors.white),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Colors.amber.shade700),
@@ -145,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 25,
                             ),
                             TextFormField(
-                              textInputAction: TextInputAction.done,
+                              textInputAction: TextInputAction.next,
                               onEditingComplete: () {},
                               controller: _passTextController,
                               focusNode: _passFocusNode,
@@ -174,7 +191,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   ),
                                   hintText: "Nhập mật khẩu (tối thiểu 6 ký tự)",
-                                  hintStyle: TextStyle(color: Colors.white),
+                                  hintStyle:
+                                      const TextStyle(color: Colors.white),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Colors.amber.shade700),
@@ -189,29 +207,29 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 10,
                     ),
                     Align(
-                    alignment: Alignment.topRight,
-                    child: TextButton(
-                      onPressed: () {
-                        GlobalMethods.navigateTo(
-                            ctx: context,
-                            routeName: ForgetPasswordScreen.routeName);
-                      },
-                      child:  Text(
-                        'Quên mật khẩu?',
-                        style: TextStyle(
-                              color: Colors.amber.shade700,
-                              fontSize: 18,
-                            ),
+                      alignment: Alignment.topRight,
+                      child: InkWell(
+                        onTap: () {
+                          GlobalMethods.navigateTo(
+                              ctx: context,
+                              routeName: ForgetPasswordScreen.routeName);
+                        },
+                        child: Text(
+                          'Quên mật khẩu?',
+                          style: TextStyle(
+                            color: Colors.amber.shade700,
+                            fontSize: 18,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                
                     const SizedBox(height: 28),
                     Container(
                       alignment: Alignment.center,
                       child: Column(
                         children: [
-                          AuthButton(fct: _submitFormOnLogin, buttonText: "Đăng nhập"),
+                          AuthButton(
+                              fct: _submitFormOnLogin, buttonText: "Đăng nhập"),
                           const SizedBox(
                             height: 185,
                           ),

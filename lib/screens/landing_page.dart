@@ -40,7 +40,7 @@ class _LandingPageState extends State<LandingPage> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 75),
+            margin: const EdgeInsets.only(top: 75),
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,13 +50,11 @@ class _LandingPageState extends State<LandingPage> {
                   child: Image.asset(
                     alignment: Alignment.topLeft,
                     "assets/images/Logo_app_inventorplus_landing.png",
-                    cacheHeight: 77,
-                    cacheWidth: 228,
+                    cacheHeight: 76,
+                    cacheWidth: 226,
                   ),
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
+                
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Text.rich(
@@ -86,7 +84,7 @@ class _LandingPageState extends State<LandingPage> {
               children: [
                 ElevatedButton(
                     style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(365, 53)),
+                        minimumSize: MaterialStateProperty.all(const Size(365, 53)),
                         backgroundColor:
                             MaterialStatePropertyAll(Colors.amber.shade700),
                         shape:
@@ -103,7 +101,7 @@ class _LandingPageState extends State<LandingPage> {
                           TextStyle(fontWeight: FontWeight.w500, fontSize: 21),
                     )),
                 const SizedBox(
-                  height: 13,
+                  height: 15,
                 ),
                 InkWell(
                     onTap: () {

@@ -36,6 +36,8 @@ dependencies:
   flutter_iconly: ^1.0.2
   firebase_auth: ^4.6.1
   flutter_native_splash: ^2.0.1+1
+  firebase_core: ^2.13.1
+  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -57,10 +59,10 @@ dev_dependencies:
 # 2) flutter pub get
 # 3) flutter pub run flutter_native_splash:create
 flutter_native_splash:
-  #background_image: "assets/images/pngtree-d-render-of-a-moving-truck-in-front-of-a-yellow-picture-image_2677108.jpg"  
+ # background_image: "assets/images/pngtree-d-render-of-a-moving-truck-in-front-of-a-yellow-picture-image_2677108.jpg"  
   fullscreen: true
   branding: assets/images/Logo_app_inventorplus.png
-  color: "#ffffff"
+  color: "##FFA000"
   android: true
 
   # The "flutter_lints" package below contains a set of recommended lints to

@@ -3,18 +3,21 @@ import 'package:InventorPlus/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class TextWidget extends StatelessWidget {
-  TextWidget({
-    super.key,
-    required this.text,
-    required this.textSize,
-    this.isBold = false,
-    this.maxLines = 10,
-    required this.color,
-  });
+  TextWidget(
+      {super.key,
+      required this.text,
+      required this.textSize,
+      this.textWeight,
+      this.maxLines = 10,
+      required this.color,
+      this.textStyle,
+      this.letterSpacing});
   final String text;
   final Color? color;
   final double textSize;
-  bool isBold;
+  final FontStyle? textStyle;
+  final double? letterSpacing;
+  final FontWeight? textWeight;
   int maxLines = 10;
 
   @override
@@ -28,7 +31,9 @@ class TextWidget extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           color: color == null ? _changeColor : color,
           fontSize: textSize,
-          fontWeight: isBold == false ? FontWeight.normal : FontWeight.bold),
+          fontWeight: textWeight,
+          fontStyle: textStyle,
+          letterSpacing: letterSpacing),
     );
   }
 }

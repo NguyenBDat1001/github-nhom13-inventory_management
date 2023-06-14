@@ -12,10 +12,10 @@ class LoadingScreen extends StatefulWidget {
   const LoadingScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoadingScreen> createState() => _FetchScreenState();
+  State<LoadingScreen> createState() => _LoadingScreenState();
 }
 
-class _FetchScreenState extends State<LoadingScreen> {
+class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(microseconds: 5), () async {
@@ -37,9 +37,9 @@ const AnimationBackground(),
           Container(
             color: Colors.black.withOpacity(0.2),
           ),
-          const Center(
+           Center(
             child: SpinKitFadingFour(
-              color: Colors.white,
+              color: Colors.amber.shade700,
             ),
           )
         ],

@@ -16,6 +16,7 @@ class GlobalMethods {
   static Future<void> warningDialog({
     required String title,
     required String subtitle,
+    required Icon icon,
     required Function fct,
     required BuildContext context,
   }) async {
@@ -23,59 +24,72 @@ class GlobalMethods {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Row(children: [
-              const Icon(IconlyBroken.logout),
-              const SizedBox(
-                width: 8,
+            title: Container(
+              padding: const EdgeInsets.only(bottom: 8),
+          decoration:  BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.amber.shade700,
+                width: 1.7,
               ),
-              Text(title),
-            ]),
-            content: Text(subtitle),
+            ),
+          ),
+              child: Row(children: [
+                 icon,
+                const SizedBox(width: 5),
+                Text(title,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 22)),
+              ]),
+            ),
+            content: Text(
+              subtitle,
+            ),
             actions: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 3),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Color.fromARGB(132, 121, 121, 121),
-                    width: 1,
-                  ),
-                  borderRadius: BorderRadius.circular(3),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    if (Navigator.canPop(context)) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: TextWidget(
-                    color: Colors.cyan,
-                    text: 'Không',
-                    textSize: 18,
-                  ),
-                ),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                        minimumSize:
+                            MaterialStateProperty.all(const Size(100, 40)),
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.amber.shade700),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(3)))),
+                    onPressed: () {
+                      if (Navigator.canPop(context)) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: const Text(
+                      "Không",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                    )),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 3),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromARGB(132, 121, 121, 121),
-                    width: 1,
-                  ),
-                  borderRadius: BorderRadius.circular(3),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    fct();
-                    if (Navigator.canPop(context)) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: TextWidget(
-                    color: Colors.red,
-                    text: 'Có',
-                    textSize: 18,
-                  ),
-                ),
+              const SizedBox(width: 15),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                        minimumSize:
+                            MaterialStateProperty.all(const Size(100, 40)),
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.amber.shade700),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(3)))),
+                    onPressed: () {
+                      fct();
+                    },
+                    child: const Text(
+                      "Có",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                    )),
               ),
             ],
           );
@@ -90,36 +104,52 @@ class GlobalMethods {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Row(children: const [
-              Icon(IconlyBroken.logout),
-              SizedBox(
-                width: 8,
+            title: Container(
+              padding: const EdgeInsets.only(bottom: 8),
+          decoration:  BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.amber.shade700,
+                width: 1.7,
               ),
-              Text('Đã xảy ra lỗi'),
-            ]),
+            ),
+          ),
+              child: Row(children: const [
+                Icon(
+                  IconlyBroken.danger,
+                  size: 30,
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text('Lỗi',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+              ]),
+            ),
             content: Text(subtitle),
             actions: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 3),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromARGB(132, 121, 121, 121),
-                    width: 1,
-                  ),
-                  borderRadius: BorderRadius.circular(3),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    if (Navigator.canPop(context)) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: TextWidget(
-                    color: Colors.cyan,
-                    text: 'Ok',
-                    textSize: 18,
-                  ),
-                ),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                        minimumSize:
+                            MaterialStateProperty.all(const Size(100, 40)),
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.amber.shade700),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(3)))),
+                    onPressed: () {
+                      if (Navigator.canPop(context)) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: const Text(
+                      "Đóng",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                    )),
               ),
             ],
           );

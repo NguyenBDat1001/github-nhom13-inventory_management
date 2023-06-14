@@ -1,4 +1,6 @@
+import 'package:InventorPlus/consts/firebase_consts.dart';
 import 'package:InventorPlus/screens/landing_page.dart';
+import 'package:InventorPlus/services/global_metthods.dart';
 import 'package:InventorPlus/ui/bottom_bar.dart';
 import 'package:InventorPlus/ui/widgets/animated_dialog_widget.dart';
 import 'package:InventorPlus/ui/widgets/text_widget.dart';
@@ -20,10 +22,10 @@ class _LogoutDialogState extends State<LogoutDialog> {
       dialog: AlertDialog(
         title: Container(
           padding: const EdgeInsets.only(bottom: 8),
-          decoration: const BoxDecoration(
+          decoration:  BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: Color.fromARGB(201, 74, 74, 74),
+                color: Colors.amber.shade700,
                 width: 1.7,
               ),
             ),
@@ -31,16 +33,15 @@ class _LogoutDialogState extends State<LogoutDialog> {
           child: Row(
             children: const [
               Icon(
-                IconlyBroken.danger,size: 30,
+                IconlyBroken.danger,
+                size: 30,
               ),
               SizedBox(
                 width: 5,
               ),
               Text(
                 "Đăng xuất",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,fontSize: 23
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
               ),
             ],
           ),
@@ -48,59 +49,44 @@ class _LogoutDialogState extends State<LogoutDialog> {
         content: const Text("Bạn có chắc muốn đăng xuất không?"),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 10,bottom: 6),
+            padding: const EdgeInsets.only(right: 10, bottom: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 3),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color.fromARGB(132, 121, 121, 121),
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: TextButton(
+                 ElevatedButton(
+                    style: ButtonStyle(
+                        minimumSize:
+                            MaterialStateProperty.all(const Size(85, 40)),
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.amber.shade700),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(3)))),
                     onPressed: () {
                       if (Navigator.canPop(context)) {
                         Navigator.pop(context);
                       }
                     },
-                    child: TextWidget(
-                      text: "Không",
-                      textSize: 18,
-                      isBold: true,
-                      color: null,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 30),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 3),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color.fromARGB(132, 121, 121, 121),
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              child: const LandingPage(),
-                              type: PageTransitionType.fade));
+                    child: TextWidget(text: "Không", textSize: 18, color: null,textWeight: FontWeight.w600,)),
+              
+                const SizedBox(width: 20),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        minimumSize:
+                            MaterialStateProperty.all(const Size(85, 40)),
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.amber.shade700),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(3)))),
+                    onPressed: () async {
+                      await authInstance.signOut();
+                      GlobalMethods.navigateTo(
+                          ctx: context, routeName: LandingPage.routeName);
                     },
-                    child: TextWidget(
-                      text: "Có",
-                      color: Colors.red,
-                      textSize: 18,
-                      isBold: true,
-                    ),
-                  ),
-                ),
+                    child: TextWidget(text: "Có", textSize: 18, color: null,textWeight: FontWeight.w600,)),
               ],
             ),
           ),

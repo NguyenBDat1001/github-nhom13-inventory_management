@@ -41,7 +41,7 @@ class _AnimationBackgroundState extends State<AnimationBackground>  with TickerP
       height: double.infinity,
       decoration:  BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/zyro-image_landing.png",),
+              image: const AssetImage("assets/images/zyro-image_landing.png",),
               alignment: FractionalOffset(_animation.value, 0) ,
               fit: BoxFit.cover,
               opacity: 0.9)),

@@ -1,4 +1,11 @@
+
+import 'package:InventorPlus/consts/firebase_consts.dart';
+import 'package:InventorPlus/screens/user_screens/user-info_screen.dart';
+import 'package:InventorPlus/services/global_metthods.dart';
+import 'package:InventorPlus/ui/loading_manager.dart';
 import 'package:InventorPlus/ui/logout_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -16,11 +23,47 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  void _showScreen(BuildContext context, var screen) {
-    Navigator.push(
-        context,
-        PageTransition(
-            child: screen, type: PageTransitionType.leftToRightWithFade));
+   String? _name;
+   String? _email;
+   bool _isLoading = false;
+   final User? user = authInstance.currentUser;
+@override
+  void initState() {
+    getUserData();
+    super.initState();
+  }
+
+   Future<void>  getUserData() async {
+     setState(() {
+      _isLoading = true;
+    });
+     if (user == null) {
+      setState(() {
+        _isLoading = false;
+      });
+      return;
+    }
+try {
+      String _uid = user!.uid;
+
+      final DocumentSnapshot userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(_uid).get();
+      if (userDoc == null) {
+        return;
+      } else {
+        _email = userDoc.get('email');
+        _name = userDoc.get('name');
+      }
+    } catch (error) {
+      setState(() {
+        _isLoading = false;
+      });
+      GlobalMethods.errorDialog(subtitle: '$error', context: context);
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   Widget _listTiles(
@@ -45,7 +88,12 @@ class _UserScreenState extends State<UserScreen> {
       },
     );
   }
-
+  void _showScreen(BuildContext context, var screen) {
+    Navigator.push(
+        context,
+        PageTransition(
+            child: screen, type: PageTransitionType.leftToRightWithFade));
+  }
   Future<void> _showLogoutDialog() async {
     await showDialog(
       context: context,
@@ -60,91 +108,93 @@ class _UserScreenState extends State<UserScreen> {
     final themeState = Provider.of<DarkThemeProvider>(context);
     Color _changeColor = themeState.getDarkTheme ? Colors.white : Colors.black;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            const CircleAvatar(
-              backgroundColor: Colors.transparent,
-              backgroundImage: AssetImage(
-                  "assets/images/photo-1633332755192-727a05c4013d.png"),
-              radius: 72,
-            ),
-            const SizedBox(
-              height: 18,
-            ),
-            RichText(
-                text: TextSpan(
-                    text: "Xin chào, ",
-                    style: TextStyle(
-                        color: Colors.amber.shade700,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 26),
-                    children: <TextSpan>[
-                  TextSpan(
-                      text: "User1",
-                      style: TextStyle(
-                          color: _changeColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 23),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          print("My name is ");
-                        })
-                ])),
-            const SizedBox(
-              height: 5,
-            ),
-            TextWidget(
-                text: "nguyendat20018@gmail.com",
-                color: Colors.amber.shade700,
-                textSize: 15),
-            const SizedBox(
-              height: 10,
-            ),
-            const Divider(
-              thickness: 2,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: EdgeInsets.all(7),
-              child: Column(
-                children: [
-                  _listTiles(
-                      title: "Chỉnh sửa thông tin",
-                      subtitle: "User1",
-                      icon: IconlyBroken.editSquare,
-                      onPressed: () {}),
-                  _listTiles(
-                      title: "Cài đặt",
-                      icon: IconlyBroken.setting,
-                      onPressed: () =>
-                          _showScreen(context, const SettingScreen())),
-                  _listTiles(
-                      title: "Góp ý, hỗ trợ",
-                      icon: IconlyBroken.send,
-                      onPressed: () {}),
-                  _listTiles(
-                      title: "Đăng xuất",
-                      icon: IconlyBroken.logout,
-                      onPressed: () {
-                        _showLogoutDialog();
-                      }),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: TextWidget(
-                        text: "Phiên bản: v1.0.0",
-                        color: Colors.amber.shade700,
-                        textSize: 13),
-                  ),
-                ],
+      body: LoadingManager(
+        isLoading: _isLoading,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 30),
+              const CircleAvatar(
+                backgroundColor: Colors.transparent,
+                backgroundImage: AssetImage(
+                    "assets/images/photo-1633332755192-727a05c4013d.png"),
+                radius: 69,
               ),
-            )
-          ],
+              const SizedBox(
+                height: 18,
+              ),
+              RichText(
+                  text: TextSpan(
+                      text: "Xin chào, ",
+                      style: TextStyle(
+                          color: Colors.amber.shade700,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25),
+                      children: <TextSpan>[
+                    TextSpan(
+                        text:  _name == null ? 'User' : _name,
+                        style: TextStyle(
+                            color: _changeColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 23),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            print("My name is ");
+                          })
+                  ])),
+              const SizedBox(
+                height: 5,
+              ),
+              TextWidget(
+                  text:  _email == null ? 'Email' : _email!, color: Colors.amber.shade700, textSize: 15),
+              const SizedBox(
+                height: 10,
+              ),
+              const Divider(
+                thickness: 2,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                padding: EdgeInsets.all(7),
+                child: Column(
+                  children: [
+                    _listTiles(
+                        title: "Thông tin người dùng",
+                        subtitle:  _name == null ? 'User' : _name,
+                        icon: IconlyBroken.editSquare,
+                        onPressed:  () =>
+                            _showScreen(context, const UserInfoScreen())),
+                    _listTiles(
+                        title: "Cài đặt",
+                        icon: IconlyBroken.setting,
+                        onPressed: () =>
+                            _showScreen(context, const SettingScreen())),
+                    _listTiles(
+                        title: "Góp ý, hỗ trợ",
+                        icon: IconlyBroken.send,
+                        onPressed: () {}),
+                    _listTiles(
+                        title: "Đăng xuất",
+                        icon: IconlyBroken.logout,
+                        onPressed: () {
+                          _showLogoutDialog();
+                        }),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: TextWidget(
+                          text: "Phiên bản: v1.0.0",
+                          color: Colors.amber.shade700,
+                          textSize: 13),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

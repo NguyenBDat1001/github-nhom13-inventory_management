@@ -2,7 +2,6 @@ import 'package:InventorPlus/services/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
-
 class BackWidget extends StatelessWidget {
   const BackWidget({Key? key}) : super(key: key);
 
@@ -12,14 +11,12 @@ class BackWidget extends StatelessWidget {
 
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: () => Navigator.canPop(context)
-                          ? Navigator.pop(context)
-                          : null,
-                      child: Icon(
-                        IconlyLight.arrowLeft2,
-                        color: Colors.amber.shade700,
-                        size: 25,
-                      ),
+      onTap: () => Navigator.canPop(context) ? Navigator.pop(context) : null,
+      child: Icon(
+        IconlyLight.arrowLeft2,
+        color: Colors.amber.shade700,
+        size: 25,
+      ),
     );
   }
 }
