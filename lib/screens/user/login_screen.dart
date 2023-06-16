@@ -3,9 +3,7 @@ import 'package:InventorPlus/loading_screen.dart';
 import 'package:InventorPlus/screens/user/forget_pass.dart';
 import 'package:InventorPlus/screens/user/register_screen.dart';
 import 'package:InventorPlus/services/global_metthods.dart';
-import 'package:InventorPlus/ui/bottom_bar.dart';
 import 'package:InventorPlus/ui/loading_manager.dart';
-import 'package:InventorPlus/ui/widgets/animation_background_widget.dart';
 import 'package:InventorPlus/ui/widgets/auth_button.dart';
 import 'package:InventorPlus/ui/widgets/back_widget.dart';
 import 'package:InventorPlus/ui/widgets/text_widget.dart';
@@ -49,13 +47,14 @@ class _LoginScreenState extends State<LoginScreen> {
         await authInstance.signInWithEmailAndPassword(
             email: _emailTextController.text.toLowerCase().trim(),
             password: _passTextController.text.trim());
-             ScaffoldMessenger.of(context).showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.amber.shade700,
             content: const Text('Đăng nhập thành công'),
             duration: const Duration(seconds: 2),
           ),
         );
+
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => const LoadingScreen(),
@@ -65,10 +64,12 @@ class _LoginScreenState extends State<LoginScreen> {
       } on FirebaseException catch (error) {
         if (error.code == 'user-not-found') {
           GlobalMethods.errorDialog(
-               subtitle: 'Email hoặc mật khẩu không chính xác', context: context);
+              subtitle: 'Email hoặc mật khẩu không chính xác',
+              context: context);
         } else if (error.code == "wrong-password") {
-            GlobalMethods.errorDialog(
-              subtitle: 'Email hoặc mật khẩu không chính xác', context: context);
+          GlobalMethods.errorDialog(
+              subtitle: 'Email hoặc mật khẩu không chính xác',
+              context: context);
         } else {
           GlobalMethods.errorDialog(
               subtitle: 'Địa chỉ Email không hợp lệ', context: context);
@@ -77,7 +78,8 @@ class _LoginScreenState extends State<LoginScreen> {
           });
         }
       } catch (error) {
-        GlobalMethods.errorDialog(subtitle: 'Địa chỉ Email không hợp lệ', context: context);
+        GlobalMethods.errorDialog(
+            subtitle: 'Địa chỉ Email không hợp lệ', context: context);
         setState(() {
           _isLoading = false;
         });

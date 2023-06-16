@@ -16,7 +16,7 @@ class InfoCardWidget extends StatelessWidget {
       },
       child: Card(
         color: Colors.white,
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
         child: ListTile(
           leading: Icon(
             icon,

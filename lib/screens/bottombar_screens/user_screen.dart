@@ -115,15 +115,15 @@ try {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               const CircleAvatar(
                 backgroundColor: Colors.transparent,
                 backgroundImage: AssetImage(
                     "assets/images/photo-1633332755192-727a05c4013d.png"),
-                radius: 69,
+                radius: 70,
               ),
               const SizedBox(
-                height: 18,
+                height: 12,
               ),
               RichText(
                   text: TextSpan(
@@ -131,21 +131,21 @@ try {
                       style: TextStyle(
                           color: Colors.amber.shade700,
                           fontWeight: FontWeight.bold,
-                          fontSize: 25),
+                          fontSize: 28),
                       children: <TextSpan>[
                     TextSpan(
                         text:  _name == null ? 'User' : _name,
                         style: TextStyle(
                             color: _changeColor,
                             fontWeight: FontWeight.w600,
-                            fontSize: 23),
+                            fontSize: 25),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             print("My name is ");
                           })
                   ])),
               const SizedBox(
-                height: 5,
+                height: 3,
               ),
               TextWidget(
                   text:  _email == null ? 'Email' : _email!, color: Colors.amber.shade700, textSize: 15),
@@ -156,7 +156,7 @@ try {
                 thickness: 2,
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               Container(
                 padding: EdgeInsets.all(7),

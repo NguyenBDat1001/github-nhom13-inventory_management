@@ -16,6 +16,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const routeName = '/RegisterScreen';
@@ -74,12 +75,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
           'userCart': [], */
           'createdAt': Timestamp.now(),
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.amber.shade700,
-            content: const Text('Đăng ký tài khoản thành công'),
-            duration: const Duration(seconds: 2),
-          ),
+         Fluttertoast.showToast(
+          msg: "Đăng kí tài khoản thành công",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 2,
+          backgroundColor: Colors.grey.shade600,
+          textColor: Colors.white,
+          fontSize: 16.0,
         );
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => const LoadingScreen(),
@@ -88,10 +91,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       } on FirebaseException catch (error) {
         if (error.code == 'email-already-in-use') {
           GlobalMethods.errorDialog(
-              subtitle: "Địa chỉ Email đã có người sử dụng!", context: context);
+              subtitle: "Địa chỉ Email đã có người sử dụng", context: context);
         } else {
           GlobalMethods.errorDialog(
-              subtitle: "${error.message}", context: context);
+              subtitle: "Địa chỉ Email không hợp lệ", context: context);
         }
         setState(() {
           _isLoading = false;
@@ -156,7 +159,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           keyboardType: TextInputType.name,
                           controller: _fullNameController,
                           validator: (value) {
-                            if (value!.isEmpty) {
+                            if (value!.isEmpty || value == " ") {
                               return "Không được bỏ trống";
                             } else {
                               return null;
@@ -267,6 +270,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         // địa chỉ kho
                         TextFormField(
+                          maxLength: 10,
                           focusNode: _addressFocusNode,
                           textInputAction: TextInputAction.done,
                           // onEditingComplete: _submitFormOnRegister,

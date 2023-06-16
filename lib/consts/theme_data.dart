@@ -41,16 +41,16 @@ class Styles {
     return ThemeData(
       primarySwatch: Colors.amber,
         scaffoldBackgroundColor:
-            isDarkTheme ? const Color(0xFF00001a) : Color.fromARGB(255, 254, 251, 248),
+            isDarkTheme ?const Color.fromARGB(255, 19, 19, 19) : Color.fromARGB(255, 254, 251, 248),
         primaryColor: Colors.amber.shade700,
         colorScheme: ThemeData().colorScheme.copyWith(
               secondary: isDarkTheme
-                  ? const Color(0xFF1a1f3c)
-                  : const Color(0xFFE8FDFD),
+                  ? const Color.fromARGB(255, 17, 13, 0) 
+                  : const Color.fromARGB(255, 253, 250, 232),
               brightness: isDarkTheme ? Brightness.dark : Brightness.light,
             ),
         cardColor:
-            isDarkTheme ? const Color(0xFF0a0d2c) : const Color(0xFFE8FDFD),
+            isDarkTheme ? Color.fromARGB(255, 34, 24, 5)  : const Color(0xFFE8FDFD),
         canvasColor: isDarkTheme ? Colors.black : Colors.grey[50],
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
             colorScheme: isDarkTheme

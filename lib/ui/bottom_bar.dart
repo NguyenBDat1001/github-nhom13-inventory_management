@@ -49,8 +49,9 @@ class _BottomBarState extends State<BottomBar> {
     bool _isDark = themeState.getDarkTheme;
     Color _changeCol = _isDark ? Colors.white : Colors.amber.shade700;
     return Scaffold(
+       resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(47.0),
+        preferredSize: const Size.fromHeight(48.0),
         child: AppBar(
           title: Center(
             child: Row(
@@ -89,8 +90,8 @@ class _BottomBarState extends State<BottomBar> {
       ),
       body: _page[_selectedIndex],
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 0.01,
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 0.11,
         clipBehavior: Clip.antiAlias,
         child: BottomNavigationBar(
             backgroundColor:
@@ -112,7 +113,7 @@ class _BottomBarState extends State<BottomBar> {
                       ? IconlyBold.arrowDownSquare
                       : IconlyLight.arrowDownSquare),
                   label: "Nhập kho"),
-              BottomNavigationBarItem(
+             const BottomNavigationBarItem(
                   icon: Icon(null), activeIcon: null, label: ""),
               BottomNavigationBarItem(
                   icon: Icon(_selectedIndex == 3
@@ -127,13 +128,14 @@ class _BottomBarState extends State<BottomBar> {
             ]),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButton: Padding(
-        padding: EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(8.0),
         child: FloatingActionButton(
             onPressed: () {
               _showDiaLog(context);
             },
-            hoverElevation: 10,
+            hoverElevation: 15,
             splashColor: Colors.grey,
             backgroundColor: Colors.amber.shade700,
             tooltip: "Thêm mới đơn hàng",
@@ -141,7 +143,7 @@ class _BottomBarState extends State<BottomBar> {
             child: Icon(
               Icons.add,
               color: _isDark ? Colors.white : Colors.black,
-              size: 30,
+              size: 32,
             )),
       ),
     );

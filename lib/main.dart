@@ -87,7 +87,7 @@ class _MyAppState extends State<MyApp> {
                   debugShowCheckedModeBanner: false,
                   title: 'InventorPlus application',
                   theme: Styles.themeData(themeProvider.getDarkTheme, context),
-                  home: const UserScreen(),
+                  home: const BottomBar(),
                   routes: {
                     RegisterScreen.routeName: (ctx) => const RegisterScreen(),
                     LoginScreen.routeName: (ctx) => const LoginScreen(),
