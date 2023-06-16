@@ -82,7 +82,7 @@ class _MyDialogState extends State<MyDialog> {
         final invoiceId = uuid.v4();
         var date = DateTime.now().toString();
         var dataDate = DateTime.parse(date);
-        var formDate = "${dataDate.day}-${dataDate.month}-${dataDate.year}";
+        var formDate = "${dataDate.day} - ${dataDate.month} - ${dataDate.year}";
         await FirebaseFirestore.instance
             .collection('invoices')
             .doc(invoiceId)

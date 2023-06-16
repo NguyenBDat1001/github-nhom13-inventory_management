@@ -1,5 +1,5 @@
-
 import 'package:InventorPlus/consts/firebase_consts.dart';
+import 'package:InventorPlus/screens/user_screens/fback-supp_screen.dart';
 import 'package:InventorPlus/screens/user_screens/user-info_screen.dart';
 import 'package:InventorPlus/services/global_metthods.dart';
 import 'package:InventorPlus/ui/loading_manager.dart';
@@ -23,27 +23,27 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-   String? _name;
-   String? _email;
-   bool _isLoading = false;
-   final User? user = authInstance.currentUser;
-@override
+  String? _name;
+  String? _email;
+  bool _isLoading = false;
+  final User? user = authInstance.currentUser;
+  @override
   void initState() {
     getUserData();
     super.initState();
   }
 
-   Future<void>  getUserData() async {
-     setState(() {
+  Future<void> getUserData() async {
+    setState(() {
       _isLoading = true;
     });
-     if (user == null) {
+    if (user == null) {
       setState(() {
         _isLoading = false;
       });
       return;
     }
-try {
+    try {
       String _uid = user!.uid;
 
       final DocumentSnapshot userDoc =
@@ -88,12 +88,14 @@ try {
       },
     );
   }
+
   void _showScreen(BuildContext context, var screen) {
     Navigator.push(
         context,
         PageTransition(
             child: screen, type: PageTransitionType.leftToRightWithFade));
   }
+
   Future<void> _showLogoutDialog() async {
     await showDialog(
       context: context,
@@ -134,7 +136,7 @@ try {
                           fontSize: 28),
                       children: <TextSpan>[
                     TextSpan(
-                        text:  _name == null ? 'User' : _name,
+                        text: _name == null ? 'User' : _name,
                         style: TextStyle(
                             color: _changeColor,
                             fontWeight: FontWeight.w600,
@@ -148,7 +150,9 @@ try {
                 height: 3,
               ),
               TextWidget(
-                  text:  _email == null ? 'Email' : _email!, color: Colors.amber.shade700, textSize: 15),
+                  text: _email == null ? 'Email' : _email!,
+                  color: Colors.amber.shade700,
+                  textSize: 15),
               const SizedBox(
                 height: 10,
               ),
@@ -164,9 +168,9 @@ try {
                   children: [
                     _listTiles(
                         title: "Thông tin người dùng",
-                        subtitle:  _name == null ? 'User' : _name,
+                        subtitle: _name == null ? 'User' : _name,
                         icon: IconlyBroken.editSquare,
-                        onPressed:  () =>
+                        onPressed: () =>
                             _showScreen(context, const UserInfoScreen())),
                     _listTiles(
                         title: "Cài đặt",
@@ -176,7 +180,8 @@ try {
                     _listTiles(
                         title: "Góp ý, hỗ trợ",
                         icon: IconlyBroken.send,
-                        onPressed: () {}),
+                        onPressed: () => _showScreen(
+                            context, const FeedbackASupportScreen())),
                     _listTiles(
                         title: "Đăng xuất",
                         icon: IconlyBroken.logout,

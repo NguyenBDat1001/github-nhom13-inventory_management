@@ -1,3 +1,5 @@
+import 'package:InventorPlus/screens/appbar/history_screen.dart';
+import 'package:InventorPlus/services/global_metthods.dart';
 import 'package:InventorPlus/ui/add_dialog_box.dart';
 import 'package:InventorPlus/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +51,7 @@ class _BottomBarState extends State<BottomBar> {
     bool _isDark = themeState.getDarkTheme;
     Color _changeCol = _isDark ? Colors.white : Colors.amber.shade700;
     return Scaffold(
-       resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(48.0),
         child: AppBar(
@@ -73,7 +75,11 @@ class _BottomBarState extends State<BottomBar> {
           ),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (ctx) => const HistoryScreen(),
+                  ));
+                },
                 icon: Icon(
                   IconlyBroken.timeCircle,
                   color: _changeCol,
@@ -113,7 +119,7 @@ class _BottomBarState extends State<BottomBar> {
                       ? IconlyBold.arrowDownSquare
                       : IconlyLight.arrowDownSquare),
                   label: "Nhập kho"),
-             const BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                   icon: Icon(null), activeIcon: null, label: ""),
               BottomNavigationBarItem(
                   icon: Icon(_selectedIndex == 3

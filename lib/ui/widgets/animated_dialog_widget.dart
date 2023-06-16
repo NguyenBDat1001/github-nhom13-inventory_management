@@ -20,7 +20,7 @@ class _AnimatedDialogState extends State<AnimatedDialog>
 
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 500),
     );
     _scaleAnimation = Tween<double>(begin: 0.3, end: 1).animate(
       CurvedAnimation(
